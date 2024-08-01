@@ -10,13 +10,6 @@
           Dashboard
           <small>Control panel</small>
         </h1>
-        <ol class="breadcrumb">
-          <li class="active">
-            <a href="#">
-              <i class="fa fa-home"></i>
-              Home Page</a>
-          </li>
-        </ol>
       </section>
 
       <!-- Main content -->
@@ -27,7 +20,7 @@
             <!-- small box -->
             <div class="small-box bg-aqua">
               <div class="inner">
-                <h3><%=@items.sum(:quantity)%></h3>
+                <h3><%= 123 %></h3>
                 <p>Total Items</p>
               </div>
               <div class="icon">
@@ -35,113 +28,9 @@
               </div>
             </div>
           </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-xs-6">
-            <!-- small box -->
-            <div class="small-box bg-green">
-              <div class="inner">
-                <h3><%=@availableItems%></h3>
-                <p>Available Items</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-checkmark"></i>
-              </div>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-xs-6">
-            <!-- small box -->
-            <div class="small-box bg-red">
-              <div class="inner">
-                <h3><%= @bookedItems %></h3>
-                <p>Booked Items</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-alert"></i>
-              </div>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-xs-6">
-            <!-- small box -->
-            <div class="small-box bg-yellow">
-              <div class="inner">
-                <h3><%= '50' %></h3>
-                <p>Monthly Sale</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-android-time"></i>
-              </div>
-            </div>
-          </div>
-          <!-- ./col -->
         </div>
         <!-- /.row -->
 
-        <div class="row">
-          <div class="col-md-12">
-            <div class="box">
-              <div class="box-header with-border">
-                <h3 class="box-title">Today's Orders (<%= @todays_delivery.count %>)</h3>
-              </div>
-              <!-- /.box-header -->
-              <div class="box-body">
-                <table class="table table-bordered table-hover">
-                  <thead>
-                    <tr>
-                      <th>Client Name</th>
-                      <th>Contact No</th>
-                      <th>Vehicle Type</th>
-                      <th>Chassis No</th>
-                      <th>Engine No</th>
-                      <th>Bill Details</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% @todays_delivery.each do |order| %>
-                      <tr>
-                        <td>
-                          <%= order.client.name %>
-                        </td>
-                        <td>
-                          <%= order.client.email %>
-                        </td>
-                        <td>
-                          <%= order.vehicle_detail.item.vehicle_type.name %>
-                        </td>
-                        <td>
-                          <%= order.vehicle_detail.chassis_no %>
-                        </td>
-                        <td>
-                          <%= order.vehicle_detail.engine_no %>
-                        </td>
-                        <td>
-                          <% if order.bill_detail %>
-                            <%= "Generated" %>
-                          <% else %>
-                            <%= link_to "Generate", new_bill_detail_path(order_id: order.id) %>
-                          <% end %>
-                        </td>
-                      </tr>
-                    <% end %>
-
-                    <% if @todays_delivery.length <= 0 %>
-                      <tr>
-                        <td colspan='6' style="text-align: center" > No orders available</td>
-                      </tr>
-                    <% end %>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <!-- /.box -->
-          </div>
-          <!-- ./col -->
-
-          
-          <!-- ./col -->
-        </div>
-        <!-- /.row -->
       </section>
       <!-- /.content -->
     </div>

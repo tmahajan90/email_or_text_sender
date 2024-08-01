@@ -4,9 +4,9 @@ class CreateClients < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :email
       t.string :mobile_no
-      t.string :address
-      t.string :aadhaar_no
-      t.string :pan_no
+      t.boolean :undeliverable, default: false
+      t.boolean :bounce_count
+      t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end

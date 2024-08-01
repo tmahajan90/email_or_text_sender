@@ -14,6 +14,7 @@ class ClientsController < ApplicationController
 
   def create
     @client = Client.new(client_params)
+    @client.user_id = current_user.id
     if @client.save
       redirect_to clients_url, notice: 'Client was successfully created.'
     else
@@ -27,6 +28,9 @@ class ClientsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def show
   end
 
   def destroy
@@ -45,6 +49,6 @@ class ClientsController < ApplicationController
     end
 
     def client_params
-      params.require(:client).permit(:name, :email, :mobile_no, :address, :aadhaar_no, :pan_no)
+      params.require(:client).permit(:name, :email, :mobile_no)
     end
 end

@@ -1,0 +1,25 @@
+# config/allowed_hosts.yml
+development:
+  allowed_hosts:
+    - pisoftsolutions.in
+    - .pisoftsolutions.in
+    - localhost
+    - admin.lvh.me
+    - admin3.lvh.me
+    - admin.lvh.me:3000
+    - abc.lvh.me:3000
+
+test:
+  allowed_hosts:
+    - ms.easy2invest.in
+    - .easy2invest.in
+    - pisoftsolutions.in
+    - .pisoftsolutions.in
+
+production:
+  allowed_hosts:
+    - admin.lvh.me
+    - admin2.lvh.me
+    - pisoftsolutions.in
+    - .pisoftsolutions.in
+

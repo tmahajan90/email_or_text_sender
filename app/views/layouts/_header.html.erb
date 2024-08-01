@@ -27,7 +27,7 @@
         <%= image_tag("user2-160x160.jpg", class: "img-circle") %>
       </div>
       <div class="pull-left info">
-        <p><%= current_user.name %></p>
+        <p><%= current_user.email %></p>
         <a href="<%= edit_user_path(current_user.id) %>">
           <i class="fa fa-edit"></i>
           Edit Profile</a>
@@ -49,61 +49,16 @@
       </li>
       <br>
       <li>
-        <a href=" <%= new_item_path %>">
-          <i class="fa fa-plus"></i>
-          <span>Add Consignment</span>
-        </a>
-      </li>
-      <li>
-        <a href="<%= items_path %>">
-          <i class="fa fa-search"></i>
-          <span>All Consignments</span>
-        </a>
-      </li>
-      <br>
-      <li>
-        <a href="<%= new_vehicle_detail_path %>">
-          <i class="fa fa-plus-square"></i>
-          <span>Add New Vehicle Detail</span>
-        </a>
-      </li>
-      <li>
-        <a href="<%= vehicle_details_path %>">
-          <i class="fa fa-list-ul"></i>
-          <span>All Vehicle Details</span>
-        </a>
-      </li>
-      <br>
-      <li>
-        <a href="<%= new_client_path %>">
-          <i class="fa fa-user-plus"></i>
-          <span>Add Client</span>
-        </a>
-      </li>
-      <li>
         <a href="<%= clients_path %>">
           <i class="fa fa-users"></i>
           <span>All Clients</span>
         </a>
       </li>
-      <br>
+
       <li>
-        <a href="<%= new_order_path %>">
-          <i class="fa fa-user-plus"></i>
-          <span>Add Order</span>
-        </a>
-      </li>
-      <li>
-        <a href="<%= orders_path %>">
+        <a href="<%= groups_path %>">
           <i class="fa fa-users"></i>
-          <span>All Orders</span>
-        </a>
-      </li>
-      <br>
-      <li>
-        <a href="<%= bill_details_path %>">
-          <i class="fa fa-list-ul"></i>
-          <span>Bill Details</span>
+          <span>All Groups</span>
         </a>
       </li>
     </ul>

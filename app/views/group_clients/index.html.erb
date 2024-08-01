@@ -1,0 +1,166 @@
+<body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+    <%= render 'layouts/header' %>
+    <div class="content-wrapper">
+      <section class="content-header">
+        <h1>Manage Clients in Group</h1>
+      </section>
+
+      <section class="content">
+        <div class="row">
+          <!-- Available Clients Section -->
+          <div class="col-md-5">
+            <div class="box box-primary">
+              <div class="box-header with-border">
+                <h3 class="box-title">Available Clients</h3>
+              </div>
+              <div class="box-body">
+                <ul class="list-group" id="available-clients-list">
+                  <% @clients.each do |client| %>
+                    <% unless @group_clients.include?(client) %>
+                      <li class="list-group-item available-client" data-client-id="<%= client.id %>">
+                        <%= client.name %>
+                        <i class="fa fa-arrow-right pull-right"></i>
+                      </li>
+                    <% end %>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Buttons to move all clients -->
+          <div class="col-md-2 text-center">
+            <button id="move-all-to-group" class="btn btn-success btn-block">
+              Move All <i class="fa fa-arrow-right"></i>
+            </button>
+            <button id="move-all-to-available" class="btn btn-danger btn-block">
+              <i class="fa fa-arrow-left"></i> Move All
+            </button>
+
+            <%= form_with url: group_group_clients_path(@group), method: :post, id: 'group-clients-form', class: 'form-horizontal' do %>
+              <%= hidden_field_tag 'group[client_ids]', @group.client_ids.join(','), id: 'group-client-ids' %>
+              <div class="form-group text-center mt-3" style="margin-top: 60%;">
+                <%= submit_tag 'Update Clients', class: 'btn btn-primary' %>
+              </div>
+            <% end %>
+          </div>
+
+          <!-- Group Clients Section -->
+          <div class="col-md-5">
+            <div class="box box-success">
+              <div class="box-header with-border">
+                <h3 class="box-title">Current Clients in Group</h3>
+              </div>
+              <div class="box-body">
+                <ul class="list-group" id="group-clients-list">
+                  <% @group_clients.each do |client| %>
+                    <li class="list-group-item group-client" data-client-id="<%= client.id %>">
+                      <%= client.name %>
+                      <i class="fa fa-arrow-left pull-left"></i>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+    
+    <%= render 'layouts/footer' %>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      function updateClientIds() {
+        const clientIds = $('#group-clients-list .group-client').map(function () {
+          return $(this).data('client-id');
+        }).get();
+        $('#group-client-ids').val(clientIds.join(','));
+      }
+
+      function alphanumSort(a, b) {
+        function chunkify(t) {
+          let tz = [];
+          let x = 0;
+          let y = -1;
+          let n = 0;
+          let i;
+          let j;
+
+          while ((i = (j = t.charAt(x++)).charCodeAt(0))) {
+            let m = i === 46 || (i >= 48 && i <= 57);
+            if (m !== n) {
+              tz[++y] = '';
+              n = m;
+            }
+            tz[y] += j;
+          }
+          return tz;
+        }
+
+        let aa = chunkify(a.textContent.toLowerCase());
+        let bb = chunkify(b.textContent.toLowerCase());
+
+        for (let x = 0; aa[x] && bb[x]; x++) {
+          if (aa[x] !== bb[x]) {
+            let c = Number(aa[x]);
+            let d = Number(bb[x]);
+
+            if (c === aa[x] && d === bb[x]) {
+              return c - d;
+            } else {
+              return aa[x] > bb[x] ? 1 : -1;
+            }
+          }
+        }
+        return aa.length - bb.length;
+      }
+
+      function sortList(list) {
+        list.find('li').sort(alphanumSort).appendTo(list);
+      }
+
+      $('#available-clients-list').on('click', '.available-client', function () {
+        $(this).appendTo('#group-clients-list').removeClass('available-client').addClass('group-client');
+        $(this).find('.fa').removeClass('fa-arrow-right pull-right').addClass('fa-arrow-left pull-left');
+        sortList($('#available-clients-list'));
+        sortList($('#group-clients-list'));
+        updateClientIds();
+      });
+
+      $('#group-clients-list').on('click', '.group-client', function () {
+        $(this).appendTo('#available-clients-list').removeClass('group-client').addClass('available-client');
+        $(this).find('.fa').removeClass('fa-arrow-left pull-left').addClass('fa-arrow-right pull-right');
+        sortList($('#available-clients-list'));
+        sortList($('#group-clients-list'));
+        updateClientIds();
+      });
+
+      $('#move-all-to-group').click(function () {
+        $('#available-clients-list .available-client').each(function () {
+          $(this).appendTo('#group-clients-list').removeClass('available-client').addClass('group-client');
+          $(this).find('.fa').removeClass('fa-arrow-right pull-right').addClass('fa-arrow-left pull-left');
+        });
+        sortList($('#available-clients-list'));
+        sortList($('#group-clients-list'));
+        updateClientIds();
+      });
+
+      $('#move-all-to-available').click(function () {
+        $('#group-clients-list .group-client').each(function () {
+          $(this).appendTo('#available-clients-list').removeClass('group-client').addClass('available-client');
+          $(this).find('.fa').removeClass('fa-arrow-left pull-left').addClass('fa-arrow-right pull-right');
+        });
+        sortList($('#available-clients-list'));
+        sortList($('#group-clients-list'));
+        updateClientIds();
+      });
+
+      sortList($('#available-clients-list'));
+      sortList($('#group-clients-list'));
+    });
+  </script>
+</body>

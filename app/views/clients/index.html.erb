@@ -8,14 +8,8 @@
       <h1>
         All Client Details
       </h1>
-      <ol class="breadcrumb">
-        <li>
-          <a href="#">
-            <i class="fa fa-home"></i>
-            Home Page</a>
-        </li>
-        <li class="active">All Clients</li>
-      </ol>
+
+      <%= link_to "Add New Client", new_client_path %>
     </section>
 
       <section class="content">
@@ -32,9 +26,8 @@
                       <th>Name</th>
                       <th>E-mail</th>
                       <th>Mobile No</th>
-                      <th>Aadhaar No</th>
-                      <th>PAN No</th>
-                      <th>Address</th>
+                      <th>Undeliverable</th>
+                      <th>Bounce Count</th>
                       <th>
                         <i class="ion ion-edit"></i>
                       </th>
@@ -49,9 +42,8 @@
                       <td><%= client.name %></td>
                       <td><%= client.email %></td>
                       <td><%= client.mobile_no %></td>
-                      <td><%= client.aadhaar_no %></td>
-                      <td><%= client.pan_no %></td>
-                      <td><%= client.address %></td>
+                      <td><%= client.undeliverable %></td>
+                      <td><%= client.bounce_count %></td>
                       <td><%= link_to "", edit_client_path(client), { class: "ion ion-edit"} %></td>
                       <td>
                         <%= link_to client, method: :delete, data: { confirm: 'Are you sure?' } do %>
