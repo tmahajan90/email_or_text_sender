@@ -4,6 +4,11 @@ require 'sidekiq/cron/web'
 Rails.application.routes.draw do
   
   mount Sidekiq::Web => '/sidekiq'
+  root 'dashboards#index'
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 
   devise_for :users
   resources :users
@@ -14,5 +19,4 @@ Rails.application.routes.draw do
     resources :group_clients, only: [:index, :create, :destroy]
   end
 
-  root 'dashboards#index'
 end

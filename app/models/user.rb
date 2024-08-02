@@ -8,6 +8,7 @@ class User < ApplicationRecord
     admin: 'admin'
   }
 
+  has_many :clients, dependent: :destroy
   has_many :groups, dependent: :destroy
   has_many :campaigns, dependent: :destroy
 
