@@ -9,7 +9,12 @@ class User < ApplicationRecord
   }
 
   has_many :groups, dependent: :destroy
+  has_many :campaigns, dependent: :destroy
 
   # has_many :group_users
   # has_many :clients, through: :group_users
+
+  def admin?
+    role == "admin"
+  end
 end
