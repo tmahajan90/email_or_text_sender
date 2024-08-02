@@ -81,6 +81,14 @@ class CampaignsController < ApplicationController
 
   # DELETE /campaigns/1 or /campaigns/1.json
   def destroy
+    if @campaign.sent? || @campaign.failed?
+      respond_to do |format|
+        format.html { redirect_to campaigns_url, alert: "Cannot delete a campaign that is already sent or failed." }
+        format.json { render json: { error: "Cannot delete a campaign that is already sent or failed." }, status: :forbidden }
+      end
+      return
+    end
+
     @campaign.destroy
 
     respond_to do |format|

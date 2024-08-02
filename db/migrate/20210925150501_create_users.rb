@@ -4,6 +4,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :first_name
       t.string :last_name
       t.string :role, default: 'user'
+      t.boolean :active, default: true
 
       t.timestamps
     end
