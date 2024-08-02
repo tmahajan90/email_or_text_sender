@@ -28,8 +28,8 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
-                      <th>Name</th>
-                      <th>Group Name</th>
+                      <th>Subject</th>
+                      <th>Group Subject</th>
                       <th>Status</th>
                       <th>Send At</th>
                       <th>
@@ -43,7 +43,7 @@
                   <tbody>
                     <% @campaigns.each do |campaign| %>
                       <tr>
-                        <td><%= link_to campaign.name, group_group_clients_path(campaign), class: "group-link" %></td>
+                        <td><%= link_to campaign.subject, group_group_clients_path(campaign), class: "group-link" %></td>
                         <td><%= campaign.group.name %></td>
                         <td><%= campaign.status.titleize %></td>
                         <td><%= campaign.send_at.in_time_zone('Asia/Kolkata').strftime('%Y-%m-%d %H:%M') %></td>

@@ -80,3 +80,6 @@ gem 'ckeditor'
 gem 'sidekiq'
 gem 'sidekiq-cron'
 
+group :development do
+  gem 'letter_opener'
+end

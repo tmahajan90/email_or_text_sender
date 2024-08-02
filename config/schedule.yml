@@ -1,0 +1,4 @@
+deliver_emails:
+  cron: "*/1 * * * *"
+  class: "ScheduledEmailWorker"
+  queue: default

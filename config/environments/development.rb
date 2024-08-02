@@ -89,4 +89,9 @@ Rails.application.configure do
   allowed_hosts_config = YAML.load_file(Rails.root.join('config', 'allowed_hosts.yml'))
   config.hosts = allowed_hosts_config[Rails.env]['allowed_hosts'] if Rails.env
 
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  config.active_job.queue_adapter = :sidekiq
 end
