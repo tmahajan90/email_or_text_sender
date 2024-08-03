@@ -31,10 +31,6 @@
         <a href="<%= edit_user_path(current_user.id) %>">
           <i class="fa fa-edit"></i>
           Edit Profile</a>
-        <a href="">
-          <%= link_to destroy_user_session_path, method: :delete  do %>
-          <i class="fa fa-sign-out"></i>Log Out
-        <% end %>
         </a>
       </div>
     </div>
@@ -73,6 +69,12 @@
           <span>Campaigns</span>
         </a>
       </li>
+
+      <% if user_signed_in? %>
+          <div class="fixed-bottom ml-3 mb-3" style="text-align: center; margin-top: 60px;">
+            <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
+          </div>
+        <% end %>
     </ul>
   </section>
   <!-- /.sidebar -->
