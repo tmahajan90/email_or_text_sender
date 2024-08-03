@@ -16,44 +16,67 @@
       <section class="content">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-lg-3 col-xs-6">
-            <!-- small box -->
-            <div class="small-box bg-aqua">
-              <div class="inner">
-                <h3><%= @clients_count %></h3>
-                <p>Total Items</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-search"></i>
-              </div>
-            </div>
-          </div>
 
-          <div class="col-lg-3 col-xs-6">
-            <!-- small box -->
-            <div class="small-box bg-green">
-              <div class="inner">
-                <h3><%= @groups_count %></h3>
-                <p>Total Groups</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-search"></i>
-              </div>
+          <% if current_user.admin? %>
+            <div class="col-lg-3 col-xs-6">
+              <a href="<%= users_path %>" class="small-box-link">
+                <div class="small-box bg-aqua">
+                  <div class="inner">
+                    <h3><%= @users_count %></h3>
+                    <p>Total Users</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-search"></i>
+                  </div>
+                </div>
+              </a>
             </div>
-          </div>
+          <% else %>
 
-          <div class="col-lg-3 col-xs-6">
-            <!-- small box -->
-            <div class="small-box bg-yellow">
-              <div class="inner">
-                <h3><%= @campaigns_count %></h3>
-                <p>Total Campaigns</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-search"></i>
-              </div>
+            <div class="col-lg-3 col-xs-6">
+              <a href="<%= clients_path %>" class="small-box-link">
+                <div class="small-box bg-aqua">
+                  <div class="inner">
+                    <h3><%= @clients_count %></h3>
+                    <p>Total Clients</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-search"></i>
+                  </div>
+                </div>
+              </a>
             </div>
-          </div>
+
+            <div class="col-lg-3 col-xs-6">
+              <a href="<%= groups_path %>" class="small-box-link">
+                <div class="small-box bg-green">
+                  <div class="inner">
+                    <h3><%= @groups_count %></h3>
+                    <p>Total Groups</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-search"></i>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="col-lg-3 col-xs-6">
+              <a href="<%= campaigns_path %>" class="small-box-link">
+                <div class="small-box bg-yellow">
+                  <div class="inner">
+                    <h3><%= @campaigns_count %></h3>
+                    <p>Total Campaigns</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-search"></i>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+          <% end %>
+
         </div>
         <!-- /.row -->
 

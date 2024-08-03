@@ -3,7 +3,7 @@
   <a href="<%= root_url %>" class="logo">
     <!-- mini logo for sidebar mini 50x50 pixels -->
     <span class="logo-mini">
-      <b>f</b>inv</span>
+      <b>Email</b></span>
     <!-- logo for regular state and mobile devices -->
     <span class="logo-lg">
       <b>Email Delivery (PiSoftSolutions)</b>
@@ -22,11 +22,13 @@
   <!-- sidebar: style can be found in sidebar.less -->
   <section class="sidebar">
     <!-- Sidebar user panel -->
-    <div class="user-panel">
-      <div class="pull-left image">
-        <%= image_tag("user2-160x160.jpg", class: "img-circle") %>
-      </div>
-      <div class="pull-left info">
+    <div class="user-panel" style="padding-bottom: 50px;">
+      <!--
+        <div class="pull-left image">
+          <%= image_tag("user2-160x160.jpg", class: "img-circle") %>
+        </div>
+      -->
+      <div class="info" style="left: 0px;">
         <p><%= current_user.email %></p>
         <a href="<%= edit_user_path(current_user.id) %>">
           <i class="fa fa-edit"></i>
@@ -35,7 +37,7 @@
       </div>
     </div>
     <!-- sidebar menu: : style can be found in sidebar.less -->
-    <ul class="sidebar-menu">
+    <ul class="sidebar-menu" style="margin-top: 20px;">
       <li class="header">MAIN NAVIGATION</li>
       <li>
         <a href="<%= root_url %>">
@@ -47,33 +49,33 @@
       <% if current_user.admin? %>
         <li>
           <a href="<%= users_path %>">
-            <i class="fa fa-home"></i>
+            <i class="fa fa-user-secret"></i>
             <span>Users</span>
           </a>
         </li>
       <% end %>
-
+    
       <li>
         <a href="<%= clients_path %>">
           <i class="fa fa-users"></i>
           <span>All Clients</span>
         </a>
       </li>
-
+    
       <li>
         <a href="<%= groups_path %>">
-          <i class="fa fa-users"></i>
+          <i class="fa fa-object-group"></i>
           <span>All Groups</span>
         </a>
       </li>
-
+    
       <li>
         <a href="<%= campaigns_path %>">
-          <i class="fa fa-users"></i>
+          <i class="fa fa-bullhorn"></i>
           <span>Campaigns</span>
         </a>
       </li>
-
+    
       <% if user_signed_in? %>
         <% if session[:admin_id] %>
           <div class="fixed-bottom ml-3 mb-3" style="text-align: center; margin-top: 60px;">  
@@ -82,12 +84,13 @@
             </li>
           </div>
         <% end %>
-
+    
         <div class="fixed-bottom ml-3 mb-3" style="text-align: center; margin-top: 60px;">
           <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
         </div>
       <% end %>
     </ul>
+  
   </section>
   <!-- /.sidebar -->
 </aside>
