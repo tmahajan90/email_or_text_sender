@@ -32,6 +32,7 @@
                       <th>
                         <i class="ion ion-trash-b"></i>
                       </th>
+                      <th>Impersonate</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -45,6 +46,9 @@
                         <%= link_to user, method: :delete, data: { confirm: 'Are you sure?' } do %>
                         <i class="ion ion-trash-b"></i>
                         <% end %>
+                      </td>
+                      <td>
+                        <%= link_to 'Impersonate', impersonate_user_path(user), method: :post, data: { confirm: "Are you sure you want to impersonate #{user.email}?" } %>
                       </td>
                     </tr>
                   <% end %>

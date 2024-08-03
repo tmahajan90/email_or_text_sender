@@ -43,12 +43,16 @@
           <span>Home Page</span>
         </a>
       </li>
-      <li>
-        <a href="<%= users_path %>">
-          <i class="fa fa-home"></i>
-          <span>Users</span>
-        </a>
-      </li>
+      
+      <% if current_user.admin? %>
+        <li>
+          <a href="<%= users_path %>">
+            <i class="fa fa-home"></i>
+            <span>Users</span>
+          </a>
+        </li>
+      <% end %>
+
       <li>
         <a href="<%= clients_path %>">
           <i class="fa fa-users"></i>
@@ -71,10 +75,18 @@
       </li>
 
       <% if user_signed_in? %>
-          <div class="fixed-bottom ml-3 mb-3" style="text-align: center; margin-top: 60px;">
-            <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
+        <% if session[:admin_id] %>
+          <div class="fixed-bottom ml-3 mb-3" style="text-align: center; margin-top: 60px;">  
+            <li>
+              <%= link_to 'Stop Impersonating', stop_impersonating_path, method: :delete, class: "btn btn-danger" %>
+            </li>
           </div>
         <% end %>
+
+        <div class="fixed-bottom ml-3 mb-3" style="text-align: center; margin-top: 60px;">
+          <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
+        </div>
+      <% end %>
     </ul>
   </section>
   <!-- /.sidebar -->
