@@ -49,12 +49,32 @@
               </div>
 
               <div class="box-body">
-                <div class="form-group col-md-12">
+                <div class="form-group col-md-8">
                   <label>Email Body</label>
                   <%= f.text_area :body, autocomplete: "off", placeholder: "Enter Email Body", class: "tinymce form-control", required: true, rows: 10, cols: 100 %>
                   <%= tinymce %>
                 </div>
-             
+                <div class="form-group col-md-4">
+                  <h4>Merge Tags Reference</h4>
+                  <h6>(Would be added if the Merge Tags value exists)</h6>
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Merge Tag</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% merge_tags.each do |tag, description| %>
+                        <tr>
+                          <td><%= tag %></td>
+                          <td><%= description %></td>
+                        </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
+                </div>
+
                 <div class="box-footer  col-md-12">
                   <%= f.submit "Submit", class: "btn btn-primary"%>
                 </div>

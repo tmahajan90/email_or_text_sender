@@ -2,8 +2,8 @@ class CampaignMailer < ApplicationMailer
   
   def send_email(client, campaign)
     @campaign = campaign
-    mail(to: client.email, subject: @campaign.subject)
-
+    email_body = client.personalize_email(@campaign.email_template, client.email)
+    mail(to: client.email, subject: @campaign.subject, body: email_body )
 
     # Log the email delivery
     if client && client.email
