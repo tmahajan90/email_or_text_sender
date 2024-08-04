@@ -1,0 +1,6 @@
+height: 500
+menubar: true
+toolbar:
+  - undo redo | blocks | bold italic underline backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | removeformat | help
+plugins:
+  - advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code insertdatetime media table paste code help wordcount
