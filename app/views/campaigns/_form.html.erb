@@ -95,7 +95,6 @@
 </body>
 
 <script>
-  // Ensure jQuery is ready
   $(document).ready(function() {
     $('#send_at').datetimepicker({
         format: 'Y-m-d H:i',
@@ -103,9 +102,23 @@
         defaultDate: false // Ensure no default date is selected
       });
   });
-</script>
-<script type="text/javascript">
+
   tinymce.init({
     selector: 'textarea.editor'
   });
+  
+
+  setTimeout(function() {
+    // Select elements with class 'tox-promotion' and hide them
+    var promotionElements = document.querySelectorAll('.tox-promotion');
+    promotionElements.forEach(function(element) {
+      element.classList.add('hidden');
+    });
+
+    // Select elements with class 'tox-statusbar__branding' and hide them
+    var brandingElements = document.querySelectorAll('.tox-statusbar__branding');
+    brandingElements.forEach(function(element) {
+      element.classList.add('hidden');
+    });
+  }, 1000);
 </script>

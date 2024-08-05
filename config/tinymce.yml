@@ -1,6 +1,8 @@
 height: 500
 menubar: true
 toolbar:
-  - undo redo | blocks | bold italic underline backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media code | removeformat | help | preview
+  - myCustomLinkButton| link |undo redo | blocks | bold italic underline backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media code | removeformat | help | preview
 plugins:
   - advlist anchor autolink charmap code help image insertdatetime link liststyles lists media preview searchreplace table visualblocks wordcount print code paste imagetools
+# extended_valid_elements: 
+#   - iframe[src|frameborder|style|scrolling|class|width|height|name|align|allowfullscreen],div[style],a[href|target|rel]

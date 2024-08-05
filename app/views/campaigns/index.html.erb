@@ -31,6 +31,7 @@
                       <th>Subject</th>
                       <th>Group Subject</th>
                       <th>Status</th>
+                      <th>Body</th>
                       <th>Send At</th>
                       <th>
                         <i class="ion ion-edit"></i>
@@ -46,6 +47,7 @@
                         <td><%= link_to campaign.subject, group_group_clients_path(campaign), class: "group-link" %></td>
                         <td><%= campaign.group.name %></td>
                         <td><%= campaign.status.titleize %></td>
+                        <td><%= campaign.body.html_safe if campaign.body %></td>
                         <td><%= campaign.send_at.in_time_zone('Asia/Kolkata').strftime('%Y-%m-%d %H:%M') %></td>
                         <td><%= link_to "", edit_campaign_path(campaign), class: "ion ion-edit" %></td>
                         <td>
