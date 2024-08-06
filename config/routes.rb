@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
 
+  resources :payments, only: [:new, :create]
+  post 'payments/callback', to: 'payments#callback'
+
   post 'impersonate/:user_id', to: 'impersonations#create', as: 'impersonate_user'
   delete 'stop_impersonating', to: 'impersonations#destroy', as: 'stop_impersonating'
 

@@ -1,0 +1,18 @@
+<h1>Make a Payment</h1>
+
+<form action="<%= payments_callback_path %>" method="post">
+  <script
+    src="https://checkout.razorpay.com/v1/checkout.js"
+    data-key="<%= @key %>"
+    data-amount="<%= @razorpay_order.amount %>"
+    data-currency="INR"
+    data-order_id="<%= @razorpay_order.id %>"
+    data-buttontext="Pay Now"
+    data-name="PiSoftSolutions"
+    data-description="Payment for Order <%= @order_id %>"
+    data-prefill.name="Customer Name"
+    data-prefill.email="customer@example.com"
+    data-theme.color="#F37254">
+  </script>
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+</form>
